@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import PrimeVue from 'primevue/config';
-import installI18n from './i18n';
 import router from './router';
 import pinia from './store';
 
@@ -15,9 +14,6 @@ const app = createApp(App);
 
 // Use PrimeVue.
 app.use(PrimeVue);
-
-// Use i18n.
-installI18n(app);
 
 // Use router.
 app.use(router);
