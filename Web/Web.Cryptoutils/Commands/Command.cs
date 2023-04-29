@@ -22,27 +22,31 @@ namespace Web.Cryptoutils.Commands
         /// <returns></returns>
         public abstract string[] GetParameters();
 
+        private string[] GetFullParameters()
+        {
+            return new[]
+            {
+                this.CommandName
+            }.Concat(GetParameters())
+            .ToArray();
+        }
+
         /// <summary>
         /// Executes the command.
         /// </summary>
         /// <returns></returns>
         public Task<string> ExecuteAsync(IConsoleApp console)
         {
-            var parameters = new[]
-            {
-                this.CommandName
-            }.Concat(GetParameters())
-            .ToArray();
-            return console.ExecuteAsync(Constants.Timeout, parameters);
+            return console.ExecuteAsync(Constants.Timeout, this.GetFullParameters());
         }
 
         /// <summary>
-        /// Gets paramets in a readable form.
+        /// Gets parameters in a readable form.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Join(" ", GetParameters());
+            return string.Join(" ", this.GetFullParameters());
         }
     }
 }

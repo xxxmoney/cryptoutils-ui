@@ -13,16 +13,14 @@ namespace Web.Cryptoutils.Commands.EllipticCurve.Normal
         private readonly long curveA;
         private readonly long curveB;
         private readonly long curvePrime;
-        private readonly Point firstPoint;
-        private readonly Point secondPoint;
+        private readonly Point point;
 
-        public AlignsonCommand(long curveA, long curveB, long curvePrime, Point firstPoint, Point secondPoint)
+        public AlignsonCommand(long curveA, long curveB, long curvePrime, Point point)
         {
             this.curveA = curveA;
             this.curveB = curveB;
             this.curvePrime = curvePrime;
-            this.firstPoint = firstPoint;
-            this.secondPoint = secondPoint;
+            this.point = point;
         }
 
         public override string[] GetParameters()
@@ -32,7 +30,7 @@ namespace Web.Cryptoutils.Commands.EllipticCurve.Normal
                 curveA.ToString(),
                 curveB.ToString(),
                 curvePrime.ToString(),
-                this.fi
+                this.point.GetAsString()
             };
         }
     }

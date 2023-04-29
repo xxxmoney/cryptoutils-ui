@@ -16,6 +16,15 @@ namespace Web.Cryptoutils.Commands.EllipticCurve.Normal
         private readonly Point firstPoint;
         private readonly Point secondPoint;
 
+        public SumCommand(long curveA, long curveB, long curvePrime, Point firstPoint, Point secondPoint)
+        {
+            this.curveA = curveA;
+            this.curveB = curveB;
+            this.curvePrime = curvePrime;
+            this.firstPoint = firstPoint;
+            this.secondPoint = secondPoint;
+        }
+
         public override string[] GetParameters()
         {
             return new string[]

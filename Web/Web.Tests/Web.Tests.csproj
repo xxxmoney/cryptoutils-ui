@@ -26,10 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Tests\Cryptoutils\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\Web.Cryptoutils\cryptoutils.exe" Link="cryptoutils.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
