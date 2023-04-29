@@ -9,6 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Business\**" />
+    <Compile Remove="Data\**" />
+    <EmbeddedResource Remove="Business\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <None Remove="Business\**" />
+    <None Remove="Data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
@@ -17,11 +26,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Business\" />
-    <Folder Include="Data\" />
+    <Folder Include="Tests\Cryptoutils\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\Web.Cryptoutils\cryptoutils.exe" Link="cryptoutils.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Web.Cryptoutils\Web.Cryptoutils.csproj" />
     <ProjectReference Include="..\Web.Ioc\Web.Ioc.csproj" />
   </ItemGroup>
 
