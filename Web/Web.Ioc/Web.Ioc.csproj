@@ -12,8 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Web.Business\Web.Business.csproj" />
-    <ProjectReference Include="..\Web.Data\Web.Data.csproj" />
-    <ProjectReference Include="..\Web.Logger\Web.Logger.csproj" />
   </ItemGroup>
 
 </Project>

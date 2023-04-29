@@ -8,9 +8,6 @@ namespace Web.Ioc
 {
     public class Configuration
     {
-        public bool UseLogger { get; set; }
-        public Logger.Configuration Logger { get; set; }
-        public Dictionary<string, string> ConnectionStrings { get; set; }
 
     }
 }
