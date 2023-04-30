@@ -13,17 +13,17 @@ namespace Web.Cryptoutils.Commands.EllipticCurve.Advanced
         private readonly string curveA_G;
         private readonly string curveB_G;
         private readonly string polynomialBinary;
-        private readonly string irreduciblePolynomial;
+        private readonly string irreduciblePolynomialBinary;
         private readonly long n;
         private readonly CustomPoint firstPoint;
         private readonly CustomPoint secondPoint;
 
-        public SumCommand(string curveA_G, string curveB_G, string polynomialBinary, string irreduciblePolynomial, long n, CustomPoint firstPoint, CustomPoint secondPoint)
+        public SumCommand(string curveA_G, string curveB_G, string polynomialBinary, string irreduciblePolynomialBinary, long n, CustomPoint firstPoint, CustomPoint secondPoint)
         {
             this.curveA_G = curveA_G;
             this.curveB_G = curveB_G;
             this.polynomialBinary = polynomialBinary;
-            this.irreduciblePolynomial = irreduciblePolynomial;
+            this.irreduciblePolynomialBinary = irreduciblePolynomialBinary;
             this.n = n;
             this.firstPoint = firstPoint;
             this.secondPoint = secondPoint;
@@ -36,7 +36,7 @@ namespace Web.Cryptoutils.Commands.EllipticCurve.Advanced
                 curveA_G,
                 curveB_G,
                 polynomialBinary,
-                irreduciblePolynomial,
+                irreduciblePolynomialBinary,
                 n.ToString(),
                 firstPoint.AsString(),
                 secondPoint.AsString()
