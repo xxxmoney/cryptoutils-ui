@@ -31,6 +31,7 @@ namespace Web.Ioc
             services.AddSingleton<IHandler<EllipticCurveParameters>, EllipticCurveHandler>();
             services.AddSingleton<IHandler<ElGamalParameters>, ElGamalHandler>();
             services.AddSingleton<IHandler<FermantFactorizationParameters>, FermantFactorizationHandler>();
+            services.AddSingleton<IHandler<IsGeneratorParameters>, IsGeneratorHandler>();
 
             return services;
         }

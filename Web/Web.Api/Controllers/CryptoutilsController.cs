@@ -10,17 +10,20 @@ namespace Web.Api.Controllers
         private readonly IHandler<EllipticCurveParameters> ellipticCurveHandler;
         private readonly IHandler<ElGamalParameters> elGamalHandler;
         private readonly IHandler<FermantFactorizationParameters> fermantFactorizationHandler;
+        private readonly IHandler<IsGeneratorParameters> isGeneratorHandler;
 
         public CryptoutilsController(
             IHandler<ExtendedGreatestCommonDivisorParameters> extendedGreatestCommonDivisorHandler,
             IHandler<EllipticCurveParameters> ellipticCurveHandler,
             IHandler<ElGamalParameters> elGamalHandler,
-            IHandler<FermantFactorizationParameters> fermantFactorizationHandler)
+            IHandler<FermantFactorizationParameters> fermantFactorizationHandler,
+            IHandler<IsGeneratorParameters> isGeneratorHandler)
         {
             this.extendedGreatestCommonDivisorHandler = extendedGreatestCommonDivisorHandler;
             this.ellipticCurveHandler = ellipticCurveHandler;
             this.elGamalHandler = elGamalHandler;
             this.fermantFactorizationHandler = fermantFactorizationHandler;
+            this.isGeneratorHandler = isGeneratorHandler;
         }
 
         [HttpPost(nameof(HandleExtendedGreatestCommonDivisor))]
@@ -54,6 +57,15 @@ namespace Web.Api.Controllers
         public async Task<IActionResult> HandleFermantFactorization([FromBody] FermantFactorizationParameters parameters)
         {
             var result = await this.fermantFactorizationHandler
+                .HandleAsync(parameters);
+
+            return Ok(result);
+        }
+
+        [HttpPost(nameof(HandleIsGenerator))]
+        public async Task<IActionResult> HandleIsGenerator([FromBody] IsGeneratorParameters parameters)
+        {
+            var result = await this.isGeneratorHandler
                 .HandleAsync(parameters);
 
             return Ok(result);
