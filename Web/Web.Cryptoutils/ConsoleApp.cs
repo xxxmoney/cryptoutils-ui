@@ -48,7 +48,7 @@ namespace Web.Cryptoutils
             string output = await process.StandardOutput.ReadToEndAsync();
             string error = await process.StandardError.ReadToEndAsync();
 
-            // Wait for exit with max timeou on thread pool.
+            // Wait for exit with max timeout on thread pool.
             await Task.Run(() => process.WaitForExit((int)timeout.TotalMilliseconds));
 
             if (!string.IsNullOrEmpty(error))

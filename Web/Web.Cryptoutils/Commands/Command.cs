@@ -40,6 +40,12 @@ namespace Web.Cryptoutils.Commands
             return console.ExecuteAsync(Constants.Timeout, this.GetFullParameters());
         }
 
+        public async Task<string> ExecuteWithParametersPrintedAsync(IConsoleApp console)
+        {
+            string result = await console.ExecuteAsync(Constants.Timeout, this.GetFullParameters());
+            return this.ToString() + Environment.NewLine + result;
+        }
+
         /// <summary>
         /// Gets parameters in a readable form.
         /// </summary>

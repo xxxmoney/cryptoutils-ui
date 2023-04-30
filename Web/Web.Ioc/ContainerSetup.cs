@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Web.Business.Dtos;
+using Web.Business.Operations;
+using Web.Cryptoutils;
 
 namespace Web.Ioc
 {
@@ -20,7 +23,9 @@ namespace Web.Ioc
             services.AddSingleton(configuration);
 
             // Operations
-
+            var consoleApp = ConsoleApp.GetBuilder().WithDefaultExecutablePath().Build();
+            services.AddSingleton(consoleApp);
+            services.AddSingleton<IHandler<ExtendedGreatestCommonDivisorParameters>, ExtendedGreatestCommonDivisorHandler>();
 
             // Services
 
