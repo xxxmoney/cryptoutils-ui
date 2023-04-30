@@ -5,12 +5,19 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Web.Cryptoutils;
 using Web.Cryptoutils.Commands;
 
 namespace Web.Tests.Tests.Cryptoutils
 {
-    public class CommandArgumentsTests
+    public class CommandsTests
     {
+        public static IConsoleApp ConsoleApp = Web.Cryptoutils.ConsoleApp
+            .GetBuilder()
+            .WithDefaultExecutablePath()
+            .Build();
+
+
         public static object[] EllipticCurveNormalSumSource = new object[]
         {
             new object[]
@@ -25,7 +32,7 @@ namespace Web.Tests.Tests.Cryptoutils
         };
         [Test]
         [TestCaseSource(nameof(EllipticCurveNormalSumSource))]
-        public void EllipticCurveNormalSum(long curveA, long curveB, long curvePrime, Point firstPoint, Point secondPoint, string expected)
+        public async Task EllipticCurveNormalSum(long curveA, long curveB, long curvePrime, Point firstPoint, Point secondPoint, string expected)
         {
             // Arrange
             var command = new Web.Cryptoutils.Commands.EllipticCurve.Normal.SumCommand(curveA, curveB, curvePrime, firstPoint, secondPoint);
@@ -35,6 +42,9 @@ namespace Web.Tests.Tests.Cryptoutils
 
             // Assert
             Console.WriteLine(result);
+            Console.WriteLine();
+            Console.WriteLine(await command.ExecuteAsync(ConsoleApp));
+
             Assert.That(result, Is.EqualTo(expected));
         }
 
@@ -51,7 +61,7 @@ namespace Web.Tests.Tests.Cryptoutils
         };
         [Test]
         [TestCaseSource(nameof(EllipticCurveNormalAlignsonSource))]
-        public void EllipticCurveNormalAlignson(long curveA, long curveB, long curvePrime, Point point, string expected)
+        public async Task EllipticCurveNormalAlignson(long curveA, long curveB, long curvePrime, Point point, string expected)
         {
             // Arrange
             var command = new Web.Cryptoutils.Commands.EllipticCurve.Normal.AlignsonCommand(curveA, curveB, curvePrime, point);
@@ -61,12 +71,15 @@ namespace Web.Tests.Tests.Cryptoutils
 
             // Assert
             Console.WriteLine(result);
+            Console.WriteLine();
+            Console.WriteLine(await command.ExecuteAsync(ConsoleApp));
+
             Assert.That(result, Is.EqualTo(expected));
         }
 
         [Test]
         [TestCase(12, 8, "extgcd 12 8")]
-        public void ExtendedGreatestCommonDivisor(long number, long prime, string expected)
+        public async Task ExtendedGreatestCommonDivisor(long number, long prime, string expected)
         {
             // Arrange
             var command = new ExtendedGreatestCommonDivisorCommand(number, prime);
@@ -76,6 +89,9 @@ namespace Web.Tests.Tests.Cryptoutils
 
             // Assert
             Console.WriteLine(result);
+            Console.WriteLine();
+            Console.WriteLine(await command.ExecuteAsync(ConsoleApp));
+
             Assert.That(result, Is.EqualTo(expected));
         }
 

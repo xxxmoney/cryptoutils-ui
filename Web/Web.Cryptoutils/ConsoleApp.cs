@@ -24,7 +24,7 @@ namespace Web.Cryptoutils
     {
         private readonly string executablePath;
 
-        public ConsoleApp(string executablePath)
+        internal ConsoleApp(string executablePath)
         {
             this.executablePath = executablePath;
         }
@@ -48,8 +48,8 @@ namespace Web.Cryptoutils
             string output = await process.StandardOutput.ReadToEndAsync();
             string error = await process.StandardError.ReadToEndAsync();
 
-            // Wait for exit with max timeout.
-            process.WaitForExit((int)timeout.TotalMilliseconds);
+            // Wait for exit with max timeou on thread pool.
+            await Task.Run(() => process.WaitForExit((int)timeout.TotalMilliseconds));
 
             if (!string.IsNullOrEmpty(error))
             {
@@ -58,6 +58,12 @@ namespace Web.Cryptoutils
 
             return output;
         }
+        
+        /// <summary>
+        /// Gets new builder for the console.
+        /// </summary>
+        /// <returns></returns>
+        public static IConsoleBuilder GetBuilder() => new ConsoleBuilder();
     }
     
 }

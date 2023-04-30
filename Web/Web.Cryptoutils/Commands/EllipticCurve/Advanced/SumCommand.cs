@@ -38,8 +38,8 @@ namespace Web.Cryptoutils.Commands.EllipticCurve.Advanced
                 polynomialBinary,
                 irreduciblePolynomial,
                 n.ToString(),
-                firstPoint.GetAsString(),
-                secondPoint.GetAsString()
+                firstPoint.AsString(),
+                secondPoint.AsString()
             };
         }
     }

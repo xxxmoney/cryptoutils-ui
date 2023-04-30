@@ -15,7 +15,7 @@ namespace Web.Cryptoutils
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
-        public static string GetAsString(this Point point)
+        public static string AsString(this Point point)
         {
             return $"{point.X} {point.Y}";
         }
@@ -25,7 +25,7 @@ namespace Web.Cryptoutils
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
-        public static string GetAsString(this CustomPoint point)
+        public static string AsString(this CustomPoint point)
         {
             return $"{point.X} {point.Y}";
         }

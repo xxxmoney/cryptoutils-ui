@@ -30,7 +30,7 @@ namespace Web.Cryptoutils.Commands.EllipticCurve.Normal
                 curveA.ToString(),
                 curveB.ToString(),
                 curvePrime.ToString(),
-                this.point.GetAsString()
+                this.point.AsString()
             };
         }
     }

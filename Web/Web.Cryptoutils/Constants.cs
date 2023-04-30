@@ -12,5 +12,10 @@ namespace Web.Cryptoutils
         /// Timeout for the command to execute.
         /// </summary>
         internal static readonly TimeSpan Timeout = TimeSpan.FromSeconds(10);
+
+        /// <summary>
+        /// Name of the executable.
+        /// </summary>
+        internal const string ExecutableName = "cryptoutils.exe";
     }
 }

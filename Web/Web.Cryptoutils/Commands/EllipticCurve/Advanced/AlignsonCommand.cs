@@ -36,7 +36,7 @@ namespace Web.Cryptoutils.Commands.EllipticCurve.Advanced
                 polynomialBinary,
                 irreduciblePolynomialBinary,
                 n.ToString(),
-                point.GetAsString()
+                point.AsString()
             };
         }
     }

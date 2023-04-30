@@ -33,7 +33,7 @@ namespace Web.Cryptoutils.Commands.Shamir
                 this.K.ToString(),
                 this.N.ToString(),
                 this.S.ToString()
-            }.Concat(this.points.Select(point => point.GetAsString()).ToArray())
+            }.Concat(this.points.Select(point => point.AsString()).ToArray())
             .ToArray();
         }
     }

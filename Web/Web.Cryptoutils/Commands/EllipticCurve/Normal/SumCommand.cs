@@ -32,8 +32,8 @@ namespace Web.Cryptoutils.Commands.EllipticCurve.Normal
                 curveA.ToString(),
                 curveB.ToString(),
                 curvePrime.ToString(),
-                firstPoint.GetAsString(),
-                secondPoint.GetAsString()
+                firstPoint.AsString(),
+                secondPoint.AsString()
             };
         }
     }

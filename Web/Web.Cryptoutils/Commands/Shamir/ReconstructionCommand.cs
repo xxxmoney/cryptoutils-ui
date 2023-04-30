@@ -27,7 +27,7 @@ namespace Web.Cryptoutils.Commands.Shamir
             {
                 this.p.ToString(),
                 this.K.ToString(),
-            }.Concat(this.points.Select(point => point.GetAsString()).ToArray())
+            }.Concat(this.points.Select(point => point.AsString()).ToArray())
             .ToArray();
         }
     }
