@@ -33,6 +33,7 @@ namespace Web.Ioc
             services.AddSingleton<IHandler<FermantFactorizationParameters>, FermantFactorizationHandler>();
             services.AddSingleton<IHandler<IsGeneratorParameters>, IsGeneratorHandler>();
             services.AddSingleton<IHandler<LehmanPeraltPrimalityParameters>, LehmanPeraltPrimalityHandler>();
+            services.AddSingleton<IHandler<PollardRhoAlgorithmParameters>, PollardRhoAlgorithmHandler>();
 
             return services;
         }

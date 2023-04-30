@@ -12,6 +12,7 @@ namespace Web.Api.Controllers
         private readonly IHandler<FermantFactorizationParameters> fermantFactorizationHandler;
         private readonly IHandler<IsGeneratorParameters> isGeneratorHandler;
         private readonly IHandler<LehmanPeraltPrimalityParameters> lehmanPeraltHandler;
+        private readonly IHandler<PollardRhoAlgorithmParameters> pollardRhoHandler;
 
         public CryptoutilsController(
             IHandler<ExtendedGreatestCommonDivisorParameters> extendedGreatestCommonDivisorHandler,
@@ -19,7 +20,8 @@ namespace Web.Api.Controllers
             IHandler<ElGamalParameters> elGamalHandler,
             IHandler<FermantFactorizationParameters> fermantFactorizationHandler,
             IHandler<IsGeneratorParameters> isGeneratorHandler,
-            IHandler<LehmanPeraltPrimalityParameters> lehmanPeraltHandler)
+            IHandler<LehmanPeraltPrimalityParameters> lehmanPeraltHandler,
+            IHandler<PollardRhoAlgorithmParameters> pollardRhoHandler)
         {
             this.extendedGreatestCommonDivisorHandler = extendedGreatestCommonDivisorHandler;
             this.ellipticCurveHandler = ellipticCurveHandler;
@@ -27,6 +29,7 @@ namespace Web.Api.Controllers
             this.fermantFactorizationHandler = fermantFactorizationHandler;
             this.isGeneratorHandler = isGeneratorHandler;
             this.lehmanPeraltHandler = lehmanPeraltHandler;
+            this.pollardRhoHandler = pollardRhoHandler;
         }
 
         [HttpPost(nameof(HandleExtendedGreatestCommonDivisor))]
@@ -78,6 +81,15 @@ namespace Web.Api.Controllers
         public async Task<IActionResult> HandleLehmanPeralt([FromBody] LehmanPeraltPrimalityParameters parameters)
         {
             var result = await this.lehmanPeraltHandler
+                .HandleAsync(parameters);
+
+            return Ok(result);
+        }
+
+        [HttpPost(nameof(HandlePollardRho))]
+        public async Task<IActionResult> HandlePollardRho([FromBody] PollardRhoAlgorithmParameters parameters)
+        {
+            var result = await this.pollardRhoHandler
                 .HandleAsync(parameters);
 
             return Ok(result);
