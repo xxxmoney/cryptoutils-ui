@@ -13,6 +13,7 @@ namespace Web.Api.Controllers
         private readonly IHandler<IsGeneratorParameters> isGeneratorHandler;
         private readonly IHandler<LehmanPeraltPrimalityParameters> lehmanPeraltHandler;
         private readonly IHandler<PollardRhoAlgorithmParameters> pollardRhoHandler;
+        private readonly IHandler<RsaParameters> rsaHandler;
 
         public CryptoutilsController(
             IHandler<ExtendedGreatestCommonDivisorParameters> extendedGreatestCommonDivisorHandler,
@@ -21,7 +22,8 @@ namespace Web.Api.Controllers
             IHandler<FermantFactorizationParameters> fermantFactorizationHandler,
             IHandler<IsGeneratorParameters> isGeneratorHandler,
             IHandler<LehmanPeraltPrimalityParameters> lehmanPeraltHandler,
-            IHandler<PollardRhoAlgorithmParameters> pollardRhoHandler)
+            IHandler<PollardRhoAlgorithmParameters> pollardRhoHandler,
+            IHandler<RsaParameters> rsaHandler)
         {
             this.extendedGreatestCommonDivisorHandler = extendedGreatestCommonDivisorHandler;
             this.ellipticCurveHandler = ellipticCurveHandler;
@@ -30,6 +32,7 @@ namespace Web.Api.Controllers
             this.isGeneratorHandler = isGeneratorHandler;
             this.lehmanPeraltHandler = lehmanPeraltHandler;
             this.pollardRhoHandler = pollardRhoHandler;
+            this.rsaHandler = rsaHandler;
         }
 
         [HttpPost(nameof(HandleExtendedGreatestCommonDivisor))]
@@ -90,6 +93,15 @@ namespace Web.Api.Controllers
         public async Task<IActionResult> HandlePollardRho([FromBody] PollardRhoAlgorithmParameters parameters)
         {
             var result = await this.pollardRhoHandler
+                .HandleAsync(parameters);
+
+            return Ok(result);
+        }
+
+        [HttpPost(nameof(HandleRsa))]
+        public async Task<IActionResult> HandleRsa([FromBody] RsaParameters parameters)
+        {
+            var result = await this.rsaHandler
                 .HandleAsync(parameters);
 
             return Ok(result);
