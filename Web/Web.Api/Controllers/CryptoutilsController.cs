@@ -11,19 +11,22 @@ namespace Web.Api.Controllers
         private readonly IHandler<ElGamalParameters> elGamalHandler;
         private readonly IHandler<FermantFactorizationParameters> fermantFactorizationHandler;
         private readonly IHandler<IsGeneratorParameters> isGeneratorHandler;
+        private readonly IHandler<LehmanPeraltPrimalityParameters> lehmanPeraltHandler;
 
         public CryptoutilsController(
             IHandler<ExtendedGreatestCommonDivisorParameters> extendedGreatestCommonDivisorHandler,
             IHandler<EllipticCurveParameters> ellipticCurveHandler,
             IHandler<ElGamalParameters> elGamalHandler,
             IHandler<FermantFactorizationParameters> fermantFactorizationHandler,
-            IHandler<IsGeneratorParameters> isGeneratorHandler)
+            IHandler<IsGeneratorParameters> isGeneratorHandler,
+            IHandler<LehmanPeraltPrimalityParameters> lehmanPeraltHandler)
         {
             this.extendedGreatestCommonDivisorHandler = extendedGreatestCommonDivisorHandler;
             this.ellipticCurveHandler = ellipticCurveHandler;
             this.elGamalHandler = elGamalHandler;
             this.fermantFactorizationHandler = fermantFactorizationHandler;
             this.isGeneratorHandler = isGeneratorHandler;
+            this.lehmanPeraltHandler = lehmanPeraltHandler;
         }
 
         [HttpPost(nameof(HandleExtendedGreatestCommonDivisor))]
@@ -66,6 +69,15 @@ namespace Web.Api.Controllers
         public async Task<IActionResult> HandleIsGenerator([FromBody] IsGeneratorParameters parameters)
         {
             var result = await this.isGeneratorHandler
+                .HandleAsync(parameters);
+
+            return Ok(result);
+        }
+
+        [HttpPost(nameof(HandleLehmanPeralt))]
+        public async Task<IActionResult> HandleLehmanPeralt([FromBody] LehmanPeraltPrimalityParameters parameters)
+        {
+            var result = await this.lehmanPeraltHandler
                 .HandleAsync(parameters);
 
             return Ok(result);

@@ -32,6 +32,7 @@ namespace Web.Ioc
             services.AddSingleton<IHandler<ElGamalParameters>, ElGamalHandler>();
             services.AddSingleton<IHandler<FermantFactorizationParameters>, FermantFactorizationHandler>();
             services.AddSingleton<IHandler<IsGeneratorParameters>, IsGeneratorHandler>();
+            services.AddSingleton<IHandler<LehmanPeraltPrimalityParameters>, LehmanPeraltPrimalityHandler>();
 
             return services;
         }
