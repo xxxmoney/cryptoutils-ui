@@ -48,7 +48,7 @@ namespace Web.Cryptoutils
 
         public IConsoleFinalBuilder WithDefaultExecutablePath()
         {
-            this.executablePath = Path.Combine(Environment.CurrentDirectory, "cryptoutils.exe");
+            this.executablePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cryptoutils.exe");
             return this;
         }
 

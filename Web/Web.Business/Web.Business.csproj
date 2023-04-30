@@ -9,12 +9,16 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Mappers\" />
-    <Folder Include="Dtos\" />
-    <Folder Include="Dtos\" />
     <Folder Include="Mappers\" />
     <Folder Include="Models\" />
-    <Folder Include="Operations\" />
-    <Folder Include="Operations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FoolProof.Core" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Web.Cryptoutils\Web.Cryptoutils.csproj" />
   </ItemGroup>
 
 </Project>

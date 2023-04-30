@@ -41,6 +41,17 @@ namespace Web.Cryptoutils.Commands
         }
 
         /// <summary>
+        /// Executes the command also with printed parameters in result.
+        /// </summary>
+        /// <param name="console"></param>
+        /// <returns></returns>
+        public async Task<string> ExecuteWithParametersPrintedAsync(IConsoleApp console)
+        {
+            string result = await console.ExecuteAsync(Constants.Timeout, this.GetFullParameters());
+            return this.ToString() + Environment.NewLine + result;
+        }
+
+        /// <summary>
         /// Gets parameters in a readable form.
         /// </summary>
         /// <returns></returns>
