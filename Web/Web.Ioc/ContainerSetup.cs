@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FoolProof.Core;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +23,12 @@ namespace Web.Ioc
             // Configuration
             services.AddSingleton(configuration);
 
-            // Operations
+            services.AddFoolProof();
+
             var consoleApp = ConsoleApp.GetBuilder().WithDefaultExecutablePath().Build();
             services.AddSingleton(consoleApp);
             services.AddSingleton<IHandler<ExtendedGreatestCommonDivisorParameters>, ExtendedGreatestCommonDivisorHandler>();
-
-            // Services
-
+            services.AddSingleton<IHandler<EllipticCurveParameters>, EllipticCurveHandler>();
 
             return services;
         }
