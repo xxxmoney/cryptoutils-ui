@@ -12,6 +12,7 @@ namespace Web.Api.Controllers
         private readonly IHandler<FermantFactorizationParameters> fermantFactorizationHandler;
         private readonly IHandler<IsGeneratorParameters> isGeneratorHandler;
         private readonly IHandler<LehmanPeraltPrimalityParameters> lehmanPeraltHandler;
+        private readonly IHandler<ModularExponentiationParameters> modularExponentiationHandler;
         private readonly IHandler<PollardRhoAlgorithmParameters> pollardRhoHandler;
         private readonly IHandler<RsaParameters> rsaHandler;
         private readonly IHandler<ShamirProtocolParameters> shamirHandler;
@@ -23,6 +24,7 @@ namespace Web.Api.Controllers
             IHandler<FermantFactorizationParameters> fermantFactorizationHandler,
             IHandler<IsGeneratorParameters> isGeneratorHandler,
             IHandler<LehmanPeraltPrimalityParameters> lehmanPeraltHandler,
+            IHandler<ModularExponentiationParameters> modularExponentiationHandler,
             IHandler<PollardRhoAlgorithmParameters> pollardRhoHandler,
             IHandler<RsaParameters> rsaHandler,
             IHandler<ShamirProtocolParameters> shamirHandler)
@@ -36,6 +38,7 @@ namespace Web.Api.Controllers
             this.pollardRhoHandler = pollardRhoHandler;
             this.rsaHandler = rsaHandler;
             this.shamirHandler = shamirHandler;
+            this.modularExponentiationHandler = modularExponentiationHandler;
         }
 
         [HttpPost(nameof(HandleExtendedGreatestCommonDivisor))]
@@ -87,6 +90,15 @@ namespace Web.Api.Controllers
         public async Task<IActionResult> HandleLehmanPeralt([FromBody] LehmanPeraltPrimalityParameters parameters)
         {
             var result = await this.lehmanPeraltHandler
+                .HandleAsync(parameters);
+
+            return Ok(result);
+        }
+
+        [HttpPost(nameof(HandleModularExponentiation))]
+        public async Task<IActionResult> HandleModularExponentiation([FromBody] ModularExponentiationParameters parameters)
+        {
+            var result = await this.modularExponentiationHandler
                 .HandleAsync(parameters);
 
             return Ok(result);
