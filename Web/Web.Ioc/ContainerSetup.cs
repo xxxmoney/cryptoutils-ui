@@ -29,6 +29,7 @@ namespace Web.Ioc
             services.AddSingleton(consoleApp);
             services.AddSingleton<IHandler<ExtendedGreatestCommonDivisorParameters>, ExtendedGreatestCommonDivisorHandler>();
             services.AddSingleton<IHandler<EllipticCurveParameters>, EllipticCurveHandler>();
+            services.AddSingleton<IHandler<ElGamalParameters>, ElGamalHandler>();
 
             return services;
         }

@@ -8,13 +8,16 @@ namespace Web.Api.Controllers
     {
         private readonly IHandler<ExtendedGreatestCommonDivisorParameters> extendedGreatestCommonDivisorHandler;
         private readonly IHandler<EllipticCurveParameters> ellipticCurveHandler;
+        private readonly IHandler<ElGamalParameters> elGamalHandler;
 
         public CryptoutilsController(
-            IHandler<ExtendedGreatestCommonDivisorParameters> extendedGreatestCommonDivisorHandler, 
-            IHandler<EllipticCurveParameters> ellipticCurveHandler)
+            IHandler<ExtendedGreatestCommonDivisorParameters> extendedGreatestCommonDivisorHandler,
+            IHandler<EllipticCurveParameters> ellipticCurveHandler,
+            IHandler<ElGamalParameters> elGamalHandler)
         {
             this.extendedGreatestCommonDivisorHandler = extendedGreatestCommonDivisorHandler;
             this.ellipticCurveHandler = ellipticCurveHandler;
+            this.elGamalHandler = elGamalHandler;
         }
 
         [HttpPost(nameof(HandleExtendedGreatestCommonDivisor))]
@@ -30,6 +33,15 @@ namespace Web.Api.Controllers
         public async Task<IActionResult> HandleEllipticCurve([FromBody] EllipticCurveParameters parameters)
         {
             var result = await this.ellipticCurveHandler
+                .HandleAsync(parameters);
+
+            return Ok(result);
+        }
+
+        [HttpPost(nameof(HandleElGamal))]
+        public async Task<IActionResult> HandleElGamal([FromBody] ElGamalParameters parameters)
+        {
+            var result = await this.elGamalHandler
                 .HandleAsync(parameters);
 
             return Ok(result);
