@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Web.Cryptoutils.Commands.Shamir
 {
-    internal class ReconstructionCommand : Command
+    public class ReconstructionCommand : Command
     {
         protected override string CommandName => base.CommandName + " " + "reconstruction";
         private readonly long p;

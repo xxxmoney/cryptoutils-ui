@@ -14,6 +14,7 @@ namespace Web.Api.Controllers
         private readonly IHandler<LehmanPeraltPrimalityParameters> lehmanPeraltHandler;
         private readonly IHandler<PollardRhoAlgorithmParameters> pollardRhoHandler;
         private readonly IHandler<RsaParameters> rsaHandler;
+        private readonly IHandler<ShamirProtocolParameters> shamirHandler;
 
         public CryptoutilsController(
             IHandler<ExtendedGreatestCommonDivisorParameters> extendedGreatestCommonDivisorHandler,
@@ -23,7 +24,8 @@ namespace Web.Api.Controllers
             IHandler<IsGeneratorParameters> isGeneratorHandler,
             IHandler<LehmanPeraltPrimalityParameters> lehmanPeraltHandler,
             IHandler<PollardRhoAlgorithmParameters> pollardRhoHandler,
-            IHandler<RsaParameters> rsaHandler)
+            IHandler<RsaParameters> rsaHandler,
+            IHandler<ShamirProtocolParameters> shamirHandler)
         {
             this.extendedGreatestCommonDivisorHandler = extendedGreatestCommonDivisorHandler;
             this.ellipticCurveHandler = ellipticCurveHandler;
@@ -33,6 +35,7 @@ namespace Web.Api.Controllers
             this.lehmanPeraltHandler = lehmanPeraltHandler;
             this.pollardRhoHandler = pollardRhoHandler;
             this.rsaHandler = rsaHandler;
+            this.shamirHandler = shamirHandler;
         }
 
         [HttpPost(nameof(HandleExtendedGreatestCommonDivisor))]
@@ -102,6 +105,15 @@ namespace Web.Api.Controllers
         public async Task<IActionResult> HandleRsa([FromBody] RsaParameters parameters)
         {
             var result = await this.rsaHandler
+                .HandleAsync(parameters);
+
+            return Ok(result);
+        }
+
+        [HttpPost(nameof(HandleShamir))]
+        public async Task<IActionResult> HandleShamir([FromBody] ShamirProtocolParameters parameters)
+        {
+            var result = await this.shamirHandler
                 .HandleAsync(parameters);
 
             return Ok(result);

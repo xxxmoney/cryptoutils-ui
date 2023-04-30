@@ -35,6 +35,7 @@ namespace Web.Ioc
             services.AddSingleton<IHandler<LehmanPeraltPrimalityParameters>, LehmanPeraltPrimalityHandler>();
             services.AddSingleton<IHandler<PollardRhoAlgorithmParameters>, PollardRhoAlgorithmHandler>();
             services.AddSingleton<IHandler<RsaParameters>, RsaHandler>();
+            services.AddSingleton<IHandler<ShamirProtocolParameters>, ShamirProtocolHandler>();
 
             return services;
         }
