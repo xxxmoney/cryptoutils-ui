@@ -9,15 +9,18 @@ namespace Web.Api.Controllers
         private readonly IHandler<ExtendedGreatestCommonDivisorParameters> extendedGreatestCommonDivisorHandler;
         private readonly IHandler<EllipticCurveParameters> ellipticCurveHandler;
         private readonly IHandler<ElGamalParameters> elGamalHandler;
+        private readonly IHandler<FermantFactorizationParameters> fermantFactorizationHandler;
 
         public CryptoutilsController(
             IHandler<ExtendedGreatestCommonDivisorParameters> extendedGreatestCommonDivisorHandler,
             IHandler<EllipticCurveParameters> ellipticCurveHandler,
-            IHandler<ElGamalParameters> elGamalHandler)
+            IHandler<ElGamalParameters> elGamalHandler,
+            IHandler<FermantFactorizationParameters> fermantFactorizationHandler)
         {
             this.extendedGreatestCommonDivisorHandler = extendedGreatestCommonDivisorHandler;
             this.ellipticCurveHandler = ellipticCurveHandler;
             this.elGamalHandler = elGamalHandler;
+            this.fermantFactorizationHandler = fermantFactorizationHandler;
         }
 
         [HttpPost(nameof(HandleExtendedGreatestCommonDivisor))]
@@ -42,6 +45,15 @@ namespace Web.Api.Controllers
         public async Task<IActionResult> HandleElGamal([FromBody] ElGamalParameters parameters)
         {
             var result = await this.elGamalHandler
+                .HandleAsync(parameters);
+
+            return Ok(result);
+        }
+
+        [HttpPost(nameof(HandleFermantFactorization))]
+        public async Task<IActionResult> HandleFermantFactorization([FromBody] FermantFactorizationParameters parameters)
+        {
+            var result = await this.fermantFactorizationHandler
                 .HandleAsync(parameters);
 
             return Ok(result);

@@ -30,6 +30,7 @@ namespace Web.Ioc
             services.AddSingleton<IHandler<ExtendedGreatestCommonDivisorParameters>, ExtendedGreatestCommonDivisorHandler>();
             services.AddSingleton<IHandler<EllipticCurveParameters>, EllipticCurveHandler>();
             services.AddSingleton<IHandler<ElGamalParameters>, ElGamalHandler>();
+            services.AddSingleton<IHandler<FermantFactorizationParameters>, FermantFactorizationHandler>();
 
             return services;
         }
