@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Sum from './Sum.vue';
-import Alignson from './Alignson.vue';
+import Sum from './NormalSum.vue';
+import Alignson from './NormalAlignson.vue';
 
 export default {
     components: {
@@ -25,7 +25,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

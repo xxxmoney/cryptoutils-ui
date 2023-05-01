@@ -145,11 +145,17 @@ export const useMainStore = defineStore('main', {
                 return;
             }
 
-            const response = await axios.post('/api/Cryptoutils/Handle' + this.selected, this.algorithms[this.selected].data);
+            try {                
+                this.loaded = false;
+                const endpointName = '/api/Cryptoutils/Handle' + this.selected;
+                const response = await axios.post(endpointName, this.algorithms[this.selected].data);
 
-            if (response.data) {
-                this.algorithms[this.selected].result = response.data;
-            }
+                if (response.data) {
+                    this.algorithms[this.selected].result = response.data;
+                }
+            } finally {                
+                this.loaded = true;
+            }            
         }
     }
 })
