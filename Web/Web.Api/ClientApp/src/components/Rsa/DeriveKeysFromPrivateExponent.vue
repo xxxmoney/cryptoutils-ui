@@ -27,6 +27,7 @@
             <ErrorMessages :v="v$" field="d" />
         </div>
 
+        <Button :disabled="!isCurrentValid" label="Process" class="col-span-2" @click="getResultAsync()" />
     </div>
 </template>
 
@@ -40,7 +41,7 @@ export default {
     setup () {
         const mainStore = useMainStore();        
         const algo = computed(() => mainStore.algorithms.Rsa);
-        const data = computed(() => algo.value.data.deriveKeysFromPublicExponent);
+        const data = computed(() => algo.value.data.deriveKeysFromPrivateExponent);
 
         const rules = {
             p: { required },
@@ -54,9 +55,19 @@ export default {
             algo.value.isValid = !value;
         });
 
+        const isCurrentValid = computed(() => algo.value.isValid);  
+        
+        const getResultAsync = async () => {
+            await mainStore.getResultAsync({
+                deriveKeysFromPrivateExponent: data.value
+            });
+        };
+
         return {
             data,
-            v$
+            v$,
+            isCurrentValid,
+            getResultAsync
         }
     }
 }

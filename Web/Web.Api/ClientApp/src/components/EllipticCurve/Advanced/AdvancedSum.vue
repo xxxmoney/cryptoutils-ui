@@ -47,6 +47,8 @@
 
         <CustomPoint :v="v$" field="firstPoint" labelX="First Point X" labelY="First Point Y" v-model:x="data.firstPoint.x" v-model:y="data.firstPoint.y" class="col-span-2" />
         <CustomPoint :v="v$" field="secondPoint" labelX="Second Point X" labelY="Second Point Y" v-model:x="data.secondPoint.x" v-model:y="data.secondPoint.y" class="col-span-2" /> 
+
+        <Button :disabled="!isCurrentValid" label="Process" class="col-span-2" @click="getResultAsync()" />
     </div>
 </template>
 
@@ -55,6 +57,7 @@ import { useMainStore } from '@/store/mainStore';
 import { useVuelidate } from '@vuelidate/core';
 import { required } from '@vuelidate/validators'
 import { computed, watch } from 'vue';
+import { isBinaryValidation, isGroupValidation } from '@/utils/validation';
 
 export default {
     setup () {
@@ -63,18 +66,18 @@ export default {
         const data = computed(() => algo.value.data.advanced.sum);
 
         const rules = {
-            curveA_G: { required },
-            curveB_G: { required },
-            polynomialBinary: { required },
-            irreduciblePolynomialBinary: { required },
+            curveA_G: { isGroupValidation },
+            curveB_G: { isGroupValidation },
+            polynomialBinary: { isBinaryValidation },
+            irreduciblePolynomialBinary: { isBinaryValidation },
             n: { required },
             firstPoint: {
-                x: { required },
-                y: { required }            
+                x: { isGroupValidation },
+                y: { isGroupValidation }            
             },
             secondPoint: {
-                x: { required },
-                y: { required }            
+                x: { isGroupValidation },
+                y: { isGroupValidation }            
             }
         };
 
@@ -84,9 +87,21 @@ export default {
             algo.value.isValid = !value;
         });
 
+        const isCurrentValid = computed(() => algo.value.isValid);  
+        
+        const getResultAsync = async () => {
+            await mainStore.getResultAsync({
+                advanced: { 
+                    sum: data.value
+                }
+            });
+        };
+
         return {
             data,
-            v$
+            v$,
+            isCurrentValid,
+            getResultAsync
         }
     }
 }

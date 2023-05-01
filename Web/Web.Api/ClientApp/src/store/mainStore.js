@@ -221,7 +221,7 @@ export const useMainStore = defineStore('main', {
     },
 
     actions: {
-        async getResultAsync() {
+        async getResultAsync(data) {
             if (!this.selected) {
                 return;
             }
@@ -229,7 +229,7 @@ export const useMainStore = defineStore('main', {
             try {
                 this.loaded = false;
                 const endpointName = '/api/Cryptoutils/Handle' + this.selected;
-                const response = await axios.post(endpointName, this.algorithms[this.selected].data);
+                const response = await axios.post(endpointName, data);
 
                 if (response.data) {
                     this.algorithms[this.selected].result = response.data;

@@ -13,6 +13,7 @@
             <ValidationChips v-model:values="data.numbers" validation_fail="Input should be number" :validation="isNumber" />
         </div>
 
+        <Button :disabled="!isCurrentValid" label="Process" class="col-span-2" @click="getResultAsync()" />
     </div>
 </template>
 
@@ -40,10 +41,18 @@ export default {
             algo.value.isValid = !value;
         });        
 
+        const isCurrentValid = computed(() => algo.value.isValid);  
+        
+        const getResultAsync = async () => {
+            await mainStore.getResultAsync(data.value);
+        };
+
         return {
             data,
             v$,
-            isNumber
+            isNumber,
+            isCurrentValid,
+            getResultAsync
         }
     }
 }

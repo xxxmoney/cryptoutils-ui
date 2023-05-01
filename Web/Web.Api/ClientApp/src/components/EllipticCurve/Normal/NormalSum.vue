@@ -29,6 +29,8 @@
 
         <Point :v="v$" field="firstPoint" labelX="First Point X" labelY="First Point Y" v-model:x="data.firstPoint.x" v-model:y="data.firstPoint.y" class="col-span-2" />
         <Point :v="v$" field="secondPoint" labelX="Second Point X" labelY="Second Point Y" v-model:x="data.secondPoint.x" v-model:y="data.secondPoint.y" class="col-span-2" />
+
+        <Button :disabled="!isCurrentValid" label="Process" class="col-span-2" @click="getResultAsync()" />
     </div>
 </template>
 
@@ -64,9 +66,21 @@ export default {
             algo.value.isValid = !value;
         });
 
+        const isCurrentValid = computed(() => algo.value.isValid);  
+        
+        const getResultAsync = async () => {
+            await mainStore.getResultAsync({
+                normal: { 
+                    sum: data.value
+                }
+            });
+        };
+
         return {
             data,
-            v$
+            v$,
+            isCurrentValid,
+            getResultAsync
         }
     }
 }

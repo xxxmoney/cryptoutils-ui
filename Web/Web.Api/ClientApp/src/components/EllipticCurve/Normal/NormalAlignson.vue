@@ -28,6 +28,8 @@
         </div>
 
         <Point :v="v$" field="point" labelX="Point X" labelY="Point Y" v-model:x="data.point.x" v-model:y="data.point.y" class="col-span-2" />
+
+        <Button :disabled="!isCurrentValid" label="Process" class="col-span-2" @click="getResultAsync()" />
     </div>
 </template>
 
@@ -59,9 +61,21 @@ export default {
             algo.value.isValid = !value;
         });
 
+        const isCurrentValid = computed(() => algo.value.isValid);  
+        
+        const getResultAsync = async () => {
+            await mainStore.getResultAsync({
+                normal: { 
+                    alignson: data.value
+                }
+            });
+        };
+
         return {
             data,
-            v$
+            v$,
+            isCurrentValid,
+            getResultAsync
         }
     }
 }

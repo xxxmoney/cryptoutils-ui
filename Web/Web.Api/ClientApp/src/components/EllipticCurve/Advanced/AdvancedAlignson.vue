@@ -46,6 +46,8 @@
         </div>        
 
         <CustomPoint :v="v$" field="point" labelX="Point X" labelY="Point Y" v-model:x="data.point.x" v-model:y="data.point.y" class="col-span-2" />
+
+        <Button :disabled="!isCurrentValid" label="Process" class="col-span-2" @click="getResultAsync()" />
     </div>
 </template>
 
@@ -54,6 +56,7 @@ import { useMainStore } from '@/store/mainStore';
 import { useVuelidate } from '@vuelidate/core';
 import { required } from '@vuelidate/validators'
 import { computed, watch } from 'vue';
+import { isBinaryValidation, isGroupValidation } from '@/utils/validation';
 
 export default {
     setup () {
@@ -62,14 +65,14 @@ export default {
         const data = computed(() => algo.value.data.advanced.alignson);
 
         const rules = {
-            curveA_G: { required },
-            curveB_G: { required },
-            polynomialBinary: { required },
-            irreduciblePolynomialBinary: { required },
+            curveA_G: { isGroupValidation },
+            curveB_G: { isGroupValidation },
+            polynomialBinary: { isBinaryValidation },
+            irreduciblePolynomialBinary: { isBinaryValidation },
             n: { required },
             point: {
-                x: { required },
-                y: { required }            
+                x: { isGroupValidation },
+                y: { isGroupValidation }            
             }
         };
 
@@ -79,9 +82,21 @@ export default {
             algo.value.isValid = !value;
         });
 
+        const isCurrentValid = computed(() => algo.value.isValid);  
+        
+        const getResultAsync = async () => {
+            await mainStore.getResultAsync({
+                advanced: { 
+                    alignson: data.value
+                }
+            });
+        };
+
         return {
             data,
-            v$
+            v$,
+            isCurrentValid,
+            getResultAsync
         }
     }
 }

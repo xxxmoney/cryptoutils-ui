@@ -4,9 +4,7 @@
         
         <div v-if="selected" class="w-full">
             <component :is="selected" />
-        </div>
-
-        <Button :disabled="!isCurrentValid" label="Process" @click="getResultAsync()" />
+        </div>        
 
         <Textarea v-model="result" readonly rows="15" class="w-full basis-60 flex-grow" />
     </div>
@@ -47,19 +45,12 @@ export default {
             get: () => mainStore.selected,
             set: (value) => mainStore.selected = value
         });
-        const result = computed(() => mainStore.algorithms[selected.value]?.result);
-        const isCurrentValid = computed(() => mainStore.algorithms[selected.value]?.isValid ?? false);        
-
-        const getResultAsync = async () => {
-            await mainStore.getResultAsync();
-        };
+        const result = computed(() => mainStore.algorithms[selected.value]?.result);             
 
         return {
             algorithms,
             selected,
-            result,
-            isCurrentValid,
-            getResultAsync
+            result
         }
     }
 }

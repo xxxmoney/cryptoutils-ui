@@ -44,6 +44,8 @@
                 <Button label="-" class="p-button-danger mt-2" @click="removeItem(index)" />
             </div>
         </div>
+
+        <Button :disabled="!isCurrentValid" label="Process" class="col-span-2" @click="getResultAsync()" />
     </div>
 </template>
 
@@ -79,10 +81,21 @@ export default {
             data.value.points.push({ x: null, y: null });
         };
 
+        const isCurrentValid = computed(() => algo.value.isValid);  
+        
+        const getResultAsync = async () => {
+            await mainStore.getResultAsync({
+                getSubjects: data.value
+            });
+        };
 
         return {
             data,
-            v$
+            v$,
+            removeItem,
+            addItem,
+            isCurrentValid,
+            getResultAsync
         }
     }
 }

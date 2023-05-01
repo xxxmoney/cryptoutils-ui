@@ -55,6 +55,8 @@
 
             <ErrorMessages :v="v$" field="scalar" />
         </div>  
+
+        <Button :disabled="!isCurrentValid" label="Process" class="col-span-2" @click="getResultAsync()" />
     </div>
 </template>
 
@@ -63,6 +65,7 @@ import { useMainStore } from '@/store/mainStore';
 import { useVuelidate } from '@vuelidate/core';
 import { required } from '@vuelidate/validators'
 import { computed, watch } from 'vue';
+import { isBinaryValidation, isGroupValidation } from '@/utils/validation';
 
 export default {
     setup () {
@@ -71,14 +74,14 @@ export default {
         const data = computed(() => algo.value.data.advanced.multiply);
 
         const rules = {
-            curveA_G: { required },
-            curveB_G: { required },
-            polynomialBinary: { required },
-            irreduciblePolynomialBinary: { required },
+            curveA_G: { isGroupValidation },
+            curveB_G: { isGroupValidation },
+            polynomialBinary: { isBinaryValidation },
+            irreduciblePolynomialBinary: { isBinaryValidation },
             n: { required },
             point: {
-                x: { required },
-                y: { required }            
+                x: { isGroupValidation },
+                y: { isGroupValidation }            
             },
             scalar: { required }
         };
@@ -89,9 +92,21 @@ export default {
             algo.value.isValid = !value;
         });
 
+        const isCurrentValid = computed(() => algo.value.isValid);  
+        
+        const getResultAsync = async () => {
+            await mainStore.getResultAsync({
+                advanced: { 
+                    multiply: data.value
+                }
+            });
+        };
+
         return {
             data,
-            v$
+            v$,
+            isCurrentValid,
+            getResultAsync
         }
     }
 }

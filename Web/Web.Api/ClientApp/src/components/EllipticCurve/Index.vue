@@ -1,23 +1,23 @@
 <template>
         <TabView>
             <TabPanel header="Normal GF(p)">
-                <Normal />
+                <NormalIndex />
             </TabPanel>
             <TabPanel header="Advanced GF(2^n)">
-                <Advanced />
+                <AdvancedIndex />
             </TabPanel>
         </TabView>
 </template>
 
 <script>
-import Normal from './Normal/Index.vue';
-import Advanced from './Advanced/Index.vue';
+import NormalIndex from './Normal/NormalIndex.vue';
+import AdvancedIndex from './Advanced/AdvancedIndex.vue';
 
 export default {
     name: 'EllipticCurve',
     components: {
-        Normal,
-        Advanced
+        NormalIndex,
+        AdvancedIndex
     },
     setup () {
 
