@@ -1,4 +1,4 @@
-<template>
+<template>    
     <div class="max-w-sm flex flex-col h-full gap-3">
         <Dropdown v-model="selected" :options="algorithms" class="w-full" />
         
@@ -47,10 +47,8 @@ export default {
             get: () => mainStore.selected,
             set: (value) => mainStore.selected = value
         });
-
         const result = computed(() => mainStore.algorithms[selected.value]?.result);
-
-        const isCurrentValid = computed(() => mainStore.algorithms[selected.value]?.isValid ?? false);
+        const isCurrentValid = computed(() => mainStore.algorithms[selected.value]?.isValid ?? false);        
 
         const getResultAsync = async () => {
             await mainStore.getResultAsync();

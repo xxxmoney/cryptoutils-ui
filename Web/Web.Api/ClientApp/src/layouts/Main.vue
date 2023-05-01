@@ -1,4 +1,8 @@
 <template>
+    <Loading v-model:active="isLoading"
+                :can-cancel="false"
+                :is-full-page="true"/>
+
     <header class="p-6">
         <ul class="flex flex-row items-center gap-4 m-auto max-w-6xl">
             <li>
@@ -19,6 +23,29 @@
         <ul class="m-auto max-w-6xl"></ul>
     </footer>
 </template>
+
+<script>
+    import { useMainStore } from '../store/mainStore';
+    import { computed } from 'vue';
+    import Loading from 'vue-loading-overlay';
+
+    export default {
+        components: {
+            Loading
+        },
+        setup () {
+            const mainStore = useMainStore();
+            const isLoading = computed({
+                get: () => !mainStore.loaded,
+                set: (value) => mainStore.loaded = !value
+            });
+
+            return {
+                isLoading
+            }
+        }
+    }
+</script>
 
 <style>
     #app {        

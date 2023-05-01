@@ -4,7 +4,7 @@ import axios from 'axios'
 export const useMainStore = defineStore('main', {
     state: () => {
         return {
-            loaded: false,
+            loaded: true,
             algorithms: {
                 EllipticCurve: {
                     data: {
