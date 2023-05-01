@@ -1,23 +1,23 @@
 <template>
     <TabView>
         <TabPanel header="Encryption">
-            <Encryption />
+            <ElGamalEncryption />
         </TabPanel>
         <TabPanel header="Decryption">
-            <Decryption />
+            <ElGamalDecryption />
         </TabPanel>
     </TabView>
 </template>
 
 <script>
-import Encryption from './Encryption.vue';
-import Decryption from './Decryption.vue';
+import ElGamalEncryption from './ElGamalEncryption.vue';
+import ElGamalDecryption from './ElGamalDecryption.vue';
 
 export default {
     name: 'ElGamal',
     components: {
-        Encryption,
-        Decryption
+        ElGamalEncryption,
+        ElGamalDecryption
     },
     setup () {
 

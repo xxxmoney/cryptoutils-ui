@@ -155,6 +155,30 @@ export const useMainStore = defineStore('main', {
                 },
                 Rsa: {
                     data: {
+                        "encryption": {
+                            "m": null,
+                            "n": null,
+                            "e": null
+                        },
+                        "decryption": {
+                            "m": null,
+                            "n": null,
+                            "d": null
+                        },
+                        "derivePrivateKeyFromModule": {
+                            "n": null,
+                            "e": null
+                        },
+                        "deriveKeysFromPublicExponent": {
+                            "p": null,
+                            "q": null,
+                            "e": null
+                        },
+                        "deriveKeysFromPrivateExponent": {
+                            "p": null,
+                            "q": null,
+                            "d": null
+                        }
                     },
                     result: null,
                     isValid: false
