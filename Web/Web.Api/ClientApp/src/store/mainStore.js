@@ -185,6 +185,28 @@ export const useMainStore = defineStore('main', {
                 },
                 ShamirProtocol: {
                     data: {
+                        "getSubjects": {
+                            "p": null,
+                            "k": null,
+                            "n": null,
+                            "s": null,
+                            "points": [
+                                {
+                                    "x": null,
+                                    "y": null
+                                }
+                            ]
+                        },
+                        "reconstruction": {
+                            "p": null,
+                            "k": null,
+                            "points": [
+                                {
+                                    "x": null,
+                                    "y": null
+                                }
+                            ]
+                        }
                     },
                     result: null,
                     isValid: false

@@ -8,7 +8,7 @@
                 <label :for="label + '_x'">{{ labelX }}</label>
             </span>        
 
-            <ErrorMessages :v="v" :field="field + '.x'" />     
+            <ErrorMessages :v="v" :field="fieldX" />     
         </div>
 
         <div class="">
@@ -17,7 +17,7 @@
                 <label :for="label + '_y'">{{ labelY }}</label>
             </span>   
 
-            <ErrorMessages :v="v" :field="field + '.y'" />     
+            <ErrorMessages :v="v" :field="fieldY" />     
         </div>        
     </div>
 </template>
@@ -33,7 +33,7 @@ export default {
         },
         field: {
             type: String,
-            required: true
+            default: null
         },
         label: {
             type: String,
@@ -66,10 +66,15 @@ export default {
             get: () => props.y,
             set: (value) => context.emit('update:y', value)
         });
+
+        const fieldX = computed(() => props.field ? (props.field + '.x') : null);
+        const fieldY = computed(() => props.field ? (props.field + '.y') : null);
         
         return {
             xComputed,
-            yComputed
+            yComputed,
+            fieldX,
+            fieldY
         }
     }
 }

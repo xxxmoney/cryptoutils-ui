@@ -15,23 +15,25 @@ export default {
         },
         field: {
             type: String,
-            required: true
+            default: null
         }
     },
     setup (props) {
-        const steps = props.field.split('.');
+        const steps = props.field ? props.field.split('.') : null;
         let final = null;    
 
-        // Use steps to go deeply into props.v.
-        steps.forEach((step) => {
-            if (final === null) {
-                final = props.v[step];
-            } else {
-                final = final[step];
-            }
-        });
-            
-        const errors = computed(() => final.$silentErrors);
+        if(steps) {
+            // Use steps to go deeply into props.v.
+            steps.forEach((step) => {
+                if (final === null) {
+                    final = props.v[step];
+                } else {
+                    final = final[step];
+                }
+            });
+        }   
+                    
+        const errors = computed(() => final ? final.$silentErrors : []);
 
         return {
             errors

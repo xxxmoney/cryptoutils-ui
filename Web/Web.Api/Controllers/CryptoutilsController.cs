@@ -122,8 +122,8 @@ namespace Web.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost(nameof(HandleShamir))]
-        public async Task<IActionResult> HandleShamir([FromBody] ShamirProtocolParameters parameters)
+        [HttpPost(nameof(HandleShamirProtocol))]
+        public async Task<IActionResult> HandleShamirProtocol([FromBody] ShamirProtocolParameters parameters)
         {
             var result = await this.shamirHandler
                 .HandleAsync(parameters);
