@@ -86,8 +86,8 @@ namespace Web.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost(nameof(HandleLehmanPeralt))]
-        public async Task<IActionResult> HandleLehmanPeralt([FromBody] LehmanPeraltPrimalityParameters parameters)
+        [HttpPost(nameof(HandleLehmanPeraltPrimality))]
+        public async Task<IActionResult> HandleLehmanPeraltPrimality([FromBody] LehmanPeraltPrimalityParameters parameters)
         {
             var result = await this.lehmanPeraltHandler
                 .HandleAsync(parameters);

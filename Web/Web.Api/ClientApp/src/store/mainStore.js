@@ -114,7 +114,7 @@ export const useMainStore = defineStore('main', {
                     data: {
                         "normal": {
                             "p": null,
-                            "numbers": [                                
+                            "numbers": [
                             ]
                         },
                         "advanced": {
@@ -129,6 +129,9 @@ export const useMainStore = defineStore('main', {
                 },
                 LehmanPeraltPrimality: {
                     data: {
+                        "examinedNumber": null,
+                        "numbers": [
+                        ]
                     },
                     result: null,
                     isValid: false
