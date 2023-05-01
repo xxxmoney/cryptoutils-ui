@@ -54,6 +54,13 @@ namespace Web
                 endpoints.MapControllers();
             });
 
+            // CORS
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+            );
+
             // Add SPA support.
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>

@@ -234,6 +234,8 @@ export const useMainStore = defineStore('main', {
                 if (response.data) {
                     this.algorithms[this.selected].result = response.data;
                 }
+            } catch (error) {
+                console.log(error);
             } finally {
                 this.loaded = true;
             }
