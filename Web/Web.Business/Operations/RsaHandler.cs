@@ -59,7 +59,12 @@ namespace Web.Business.Operations
                 );
             }
 
-            return await command?.ExecuteWithParametersPrintedAsync(this.consoleApp);
+            if (command == null)
+            {
+                return null;
+            }
+
+            return await command.ExecuteWithParametersPrintedAsync(this.consoleApp);
         }
     }
 }

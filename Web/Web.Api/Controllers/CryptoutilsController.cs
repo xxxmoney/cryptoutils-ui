@@ -86,8 +86,8 @@ namespace Web.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost(nameof(HandleLehmanPeralt))]
-        public async Task<IActionResult> HandleLehmanPeralt([FromBody] LehmanPeraltPrimalityParameters parameters)
+        [HttpPost(nameof(HandleLehmanPeraltPrimality))]
+        public async Task<IActionResult> HandleLehmanPeraltPrimality([FromBody] LehmanPeraltPrimalityParameters parameters)
         {
             var result = await this.lehmanPeraltHandler
                 .HandleAsync(parameters);
@@ -104,8 +104,8 @@ namespace Web.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost(nameof(HandlePollardRho))]
-        public async Task<IActionResult> HandlePollardRho([FromBody] PollardRhoAlgorithmParameters parameters)
+        [HttpPost(nameof(HandlePollardRhoAlgorithm))]
+        public async Task<IActionResult> HandlePollardRhoAlgorithm([FromBody] PollardRhoAlgorithmParameters parameters)
         {
             var result = await this.pollardRhoHandler
                 .HandleAsync(parameters);
@@ -122,8 +122,8 @@ namespace Web.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost(nameof(HandleShamir))]
-        public async Task<IActionResult> HandleShamir([FromBody] ShamirProtocolParameters parameters)
+        [HttpPost(nameof(HandleShamirProtocol))]
+        public async Task<IActionResult> HandleShamirProtocol([FromBody] ShamirProtocolParameters parameters)
         {
             var result = await this.shamirHandler
                 .HandleAsync(parameters);

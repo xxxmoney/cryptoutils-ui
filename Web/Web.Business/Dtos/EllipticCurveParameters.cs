@@ -55,50 +55,50 @@ namespace Web.Business.Dtos
     public class EllipticCurveAdvancedSumParameters
     {
         [Required]
-        public string CurveA_G;
+        public string CurveA_G { get; set; }
         [Required]
-        public string CurveB_G;
+        public string CurveB_G { get; set; }
         [Required]
-        public string PolynomialBinary;
+        public string PolynomialBinary { get; set; }
         [Required]
-        public string IrreduciblePolynomialBinary;
+        public string IrreduciblePolynomialBinary { get; set; }
         [Required]
-        public long N;
+        public long N { get; set; }
         [Required]
-        public CustomPoint FirstPoint;
+        public CustomPoint FirstPoint { get; set; }
         [Required]
-        public CustomPoint SecondPoint;
+        public CustomPoint SecondPoint { get; set; }
     }
     public class EllipticCurveAdvancedMultiplyParameters
     {
         [Required]
-        public string CurveA_G;
+        public string CurveA_G { get; set; }
         [Required]
-        public string CurveB_G;
+        public string CurveB_G { get; set; }
         [Required]
-        public string PolynomialBinary;
+        public string PolynomialBinary { get; set; }
         [Required]
-        public string IrreduciblePolynomialBinary;
+        public string IrreduciblePolynomialBinary { get; set; }
         [Required]
-        public long N;
+        public long N { get; set; }
         [Required]
-        public CustomPoint Point;
+        public CustomPoint Point { get; set; }
         [Required]
-        public long Scalar;
+        public long Scalar { get; set; }
     }
     public class EllipticCurveAdvancedAlignsonParameters
     {
         [Required]
-        public string CurveA_G;
+        public string CurveA_G { get; set; }
         [Required]
-        public string CurveB_G;
+        public string CurveB_G { get; set; }
         [Required]
-        public string PolynomialBinary;
+        public string PolynomialBinary { get; set; }
         [Required]
-        public string IrreduciblePolynomialBinary;
+        public string IrreduciblePolynomialBinary { get; set; }
         [Required]
-        public long N;
+        public long N { get; set; }
         [Required]
-        public CustomPoint Point;
+        public CustomPoint Point { get; set; }
     }
 }

@@ -1,8 +1,13 @@
 <template>
+    <Loading v-model:active="isLoading"
+                :can-cancel="false"
+                :is-full-page="true"/>
+    <Toast position="top-right" />
+
     <header class="p-6">
         <ul class="flex flex-row items-center gap-4 m-auto max-w-6xl">
             <li>
-                <router-link to="/"><img src="src/assets/vue.svg" alt="Logo" class="logo"></router-link>
+                <!-- <router-link to="/"><img src="src/assets/vue.svg" alt="Logo" class="logo"></router-link> -->
             </li>
             <li class="flex-1"></li>
             <li>
@@ -19,6 +24,31 @@
         <ul class="m-auto max-w-6xl"></ul>
     </footer>
 </template>
+
+<script>
+    import { useMainStore } from '../store/mainStore';
+    import { computed } from 'vue';
+    import Loading from 'vue-loading-overlay';
+    import Toast from 'primevue/toast';
+
+    export default {
+        components: {
+            Loading,
+            Toast
+        },
+        setup () {
+            const mainStore = useMainStore();
+            const isLoading = computed({
+                get: () => !mainStore.loaded,
+                set: (value) => mainStore.loaded = !value
+            });
+
+            return {
+                isLoading
+            }
+        }
+    }
+</script>
 
 <style>
     #app {        

@@ -38,6 +38,11 @@ namespace Web.Business.Operations
                 );
             }
 
+            if (command == null)
+            {
+                return null;
+            }
+
             return await command.ExecuteWithParametersPrintedAsync(this.consoleApp);
         }
     }
