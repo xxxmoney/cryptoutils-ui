@@ -1,10 +1,14 @@
 <template>
-    <div class="max-w-sm">
+    <div class="max-w-sm flex flex-col h-full gap-3">
         <Dropdown v-model="selected" :options="algorithms" class="w-full" />
         
         <div v-if="selected" class="w-full">
             <component :is="selected" />
         </div>
+
+        <Button :disabled="!isCurrentValid" label="Process" @click="getResultAsync()" />
+
+        <Textarea v-model="result" readonly autoResize rows="15" class="w-full basis-60 flex-grow" />
     </div>
 </template>
 
@@ -44,9 +48,20 @@ export default {
             set: (value) => mainStore.selected = value
         });
 
+        const result = computed(() => mainStore.algorithms[selected.value]?.result);
+
+        const isCurrentValid = computed(() => mainStore.algorithms[selected.value]?.isValid ?? false);
+
+        const getResultAsync = async () => {
+            await mainStore.getResultAsync();
+        };
+
         return {
             algorithms,
-            selected
+            selected,
+            result,
+            isCurrentValid,
+            getResultAsync
         }
     }
 }

@@ -104,8 +104,8 @@ namespace Web.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost(nameof(HandlePollardRho))]
-        public async Task<IActionResult> HandlePollardRho([FromBody] PollardRhoAlgorithmParameters parameters)
+        [HttpPost(nameof(HandlePollardRhoAlgorithm))]
+        public async Task<IActionResult> HandlePollardRhoAlgorithm([FromBody] PollardRhoAlgorithmParameters parameters)
         {
             var result = await this.pollardRhoHandler
                 .HandleAsync(parameters);
