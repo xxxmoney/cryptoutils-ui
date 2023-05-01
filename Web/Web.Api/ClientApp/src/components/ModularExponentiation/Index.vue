@@ -18,7 +18,7 @@
             <ErrorMessages :v="v$" field="power" />
         </div>
 
-        <div>
+        <div class="col-span-2">
             <span class="p-float-label">
                 <InputNumber id="prime" :min="0" v-model="data.prime" class="w-full" />
                 <label for="prime">Prime</label>

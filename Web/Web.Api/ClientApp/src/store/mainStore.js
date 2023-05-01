@@ -138,12 +138,17 @@ export const useMainStore = defineStore('main', {
                 },
                 ModularExponentiation: {
                     data: {
+                        "number": null,
+                        "power": null,
+                        "prime": null
                     },
                     result: null,
                     isValid: false
                 },
                 PollardRhoAlgorithm: {
                     data: {
+                        "number": null,
+                        "seed": null
                     },
                     result: null,
                     isValid: false

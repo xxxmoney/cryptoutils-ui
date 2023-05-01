@@ -8,7 +8,7 @@
 
         <Button :disabled="!isCurrentValid" label="Process" @click="getResultAsync()" />
 
-        <Textarea v-model="result" readonly autoResize rows="15" class="w-full basis-60 flex-grow" />
+        <Textarea v-model="result" readonly rows="15" class="w-full basis-60 flex-grow" />
     </div>
 </template>
 
