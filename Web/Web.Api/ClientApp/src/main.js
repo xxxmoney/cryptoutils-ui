@@ -3,7 +3,7 @@ import App from './App.vue'
 import PrimeVue from 'primevue/config';
 import router from './router';
 import pinia from './store';
-import { LoadingPlugin } from 'vue-loading-overlay';
+import ErrorMessages from './components/ErrorMessages.vue';
 
 // Styles import.
 import 'vue-loading-overlay/dist/css/index.css';
@@ -24,7 +24,7 @@ app.use(router);
 // Use pinia.
 app.use(pinia);
 
-// Loading plugin.
-// app.use(LoadingPlugin);
+// Error messages.
+app.component('ErrorMessages', ErrorMessages);
 
 app.mount('#app');
