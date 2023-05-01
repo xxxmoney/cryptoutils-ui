@@ -1,5 +1,5 @@
 <template>    
-    <div class="max-w-md flex flex-col h-full gap-3 p-5 rounded bg-white">
+    <div class="max-w-lg flex flex-col h-full gap-3 p-5 rounded bg-white">
         <Dropdown v-model="selected" :options="algorithms" class="w-full" />
         
         <div v-if="selected" class="w-full">

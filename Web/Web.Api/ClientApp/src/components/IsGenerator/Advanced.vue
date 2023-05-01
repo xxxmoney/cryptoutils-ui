@@ -57,7 +57,9 @@ export default {
         const isCurrentValid = computed(() => algo.value.isValid);  
         
         const getResultAsync = async () => {
-            await mainStore.getResultAsync(data.value);
+            await mainStore.getResultAsync({
+                advanced: data.value
+            });
         };
 
         return {
