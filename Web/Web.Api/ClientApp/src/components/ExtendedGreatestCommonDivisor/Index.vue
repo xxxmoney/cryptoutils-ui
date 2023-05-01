@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-2 gap-2 pt-5">
+    <div class="custom-container">
         <div>
             <span class="p-float-label">
                 <InputNumber id="number" :min="0" v-model="data.number" class="w-full" />
