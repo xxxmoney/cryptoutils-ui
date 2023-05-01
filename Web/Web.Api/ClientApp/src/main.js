@@ -4,6 +4,7 @@ import PrimeVue from 'primevue/config';
 import router from './router';
 import pinia from './store';
 import ErrorMessages from './components/ErrorMessages.vue';
+import Point from './components/Point.vue';
 
 // Styles import.
 import 'vue-loading-overlay/dist/css/index.css';
@@ -26,5 +27,8 @@ app.use(pinia);
 
 // Error messages.
 app.component('ErrorMessages', ErrorMessages);
+
+// Point.
+app.component('Point', Point);
 
 app.mount('#app');

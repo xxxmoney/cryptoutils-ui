@@ -8,8 +8,8 @@ namespace Web.Cryptoutils.Models
 {
     public struct CustomPoint
     {
-        public string X;
-        public string Y;
+        public string X { get; set; }
+        public string Y { get; set; }
 
         public CustomPoint(string x, string y)
         {

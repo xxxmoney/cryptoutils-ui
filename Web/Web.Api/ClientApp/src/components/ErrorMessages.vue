@@ -19,7 +19,19 @@ export default {
         }
     },
     setup (props) {
-        const errors = computed(() => props.v[props.field].$silentErrors);
+        const steps = props.field.split('.');
+        let final = null;    
+
+        // Use steps to go deeply into props.v.
+        steps.forEach((step) => {
+            if (final === null) {
+                final = props.v[step];
+            } else {
+                final = final[step];
+            }
+        });
+            
+        const errors = computed(() => final.$silentErrors);
 
         return {
             errors

@@ -8,6 +8,70 @@ export const useMainStore = defineStore('main', {
             algorithms: {
                 EllipticCurve: {
                     data: {
+                        "normal": {
+                            "sum": {
+                                "curveA": null,
+                                "curveB": null,
+                                "curvePrime": null,
+                                "firstPoint": {
+                                    "x": null,
+                                    "y": null
+                                },
+                                "secondPoint": {
+                                    "x": null,
+                                    "y": null
+                                }
+                            },
+                            "alignson": {
+                                "curveA": null,
+                                "curveB": null,
+                                "curvePrime": null,
+                                "point": {
+                                    "x": null,
+                                    "y": null
+                                }
+                            }
+                        },
+                        "advanced": {
+                            "sum": {
+                                "curveA_G": null,
+                                "curveB_G": null,
+                                "polynomialBinary": null,
+                                "irreduciblePolynomialBinary": null,
+                                "n": null,
+                                "firstPoint": {
+                                    "x": null,
+                                    "y": null
+                                },
+                                "secondPoint": {
+                                    "x": null,
+                                    "y": null
+                                }
+                            },
+                            "multiply": {
+                                "curveA_G": null,
+                                "curveB_G": null,
+                                "polynomialBinary": null,
+                                "irreduciblePolynomialBinary": null,
+                                "n": null,
+                                "point": {
+                                    "x": null,
+                                    "y": null
+                                },
+                                "scalar": null
+                            },
+                            "alignson": {
+                                "curveA_G": null,
+                                "curveB_G": null,
+                                "polynomialBinary": null,
+                                "irreduciblePolynomialBinary": null,
+                                "n": null,
+                                "point": {
+                                    "x": null,
+                                    "y": null
+                                }
+                            }
+                        }
                     },
                     result: null,
                     isValid: false
@@ -72,18 +136,18 @@ export const useMainStore = defineStore('main', {
     },
 
     getters: {
-        algorithmKeys: (state) => Object.keys(state.algorithms)        
+        algorithmKeys: (state) => Object.keys(state.algorithms)
     },
 
     actions: {
         async getResultAsync() {
-            if(!this.selected) {
+            if (!this.selected) {
                 return;
             }
 
             const response = await axios.post('/api/Cryptoutils/Handle' + this.selected, this.algorithms[this.selected].data);
-            
-            if(response.data) {
+
+            if (response.data) {
                 this.algorithms[this.selected].result = response.data;
             }
         }
