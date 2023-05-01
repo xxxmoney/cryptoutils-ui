@@ -78,6 +78,19 @@ export const useMainStore = defineStore('main', {
                 },
                 ElGamal: {
                     data: {
+                        "encryption": {
+                            "p": null,
+                            "z": null,
+                            "b": null,
+                            "k": null,
+                            "m": null
+                        },
+                        "decryption": {
+                            "c": null,
+                            "d": null,
+                            "p": null,
+                            "a": null
+                        }
                     },
                     result: null,
                     isValid: false
@@ -145,7 +158,7 @@ export const useMainStore = defineStore('main', {
                 return;
             }
 
-            try {                
+            try {
                 this.loaded = false;
                 const endpointName = '/api/Cryptoutils/Handle' + this.selected;
                 const response = await axios.post(endpointName, this.algorithms[this.selected].data);
@@ -153,9 +166,9 @@ export const useMainStore = defineStore('main', {
                 if (response.data) {
                     this.algorithms[this.selected].result = response.data;
                 }
-            } finally {                
+            } finally {
                 this.loaded = true;
-            }            
+            }
         }
     }
 })

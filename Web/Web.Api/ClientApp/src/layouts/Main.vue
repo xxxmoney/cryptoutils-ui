@@ -6,7 +6,7 @@
     <header class="p-6">
         <ul class="flex flex-row items-center gap-4 m-auto max-w-6xl">
             <li>
-                <router-link to="/"><img src="src/assets/vue.svg" alt="Logo" class="logo"></router-link>
+                <!-- <router-link to="/"><img src="src/assets/vue.svg" alt="Logo" class="logo"></router-link> -->
             </li>
             <li class="flex-1"></li>
             <li>

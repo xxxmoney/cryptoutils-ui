@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-2 gap-x-3 gap-y-7 pt-5">
+    <div class="custom-container">
         <div>
             <span class="p-float-label">
                 <InputNumber id="curveA" :min="0" v-model="data.curveA" class="w-full" />
