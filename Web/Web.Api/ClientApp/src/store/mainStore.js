@@ -97,18 +97,32 @@ export const useMainStore = defineStore('main', {
                 },
                 ExtendedGreatestCommonDivisor: {
                     data: {
+                        "number": null,
+                        "prime": null
                     },
                     result: null,
                     isValid: false
                 },
                 FermantFactorization: {
                     data: {
+                        "number": null
                     },
                     result: null,
                     isValid: false
                 },
                 IsGenerator: {
                     data: {
+                        "normal": {
+                            "p": null,
+                            "numbers": [                                
+                            ]
+                        },
+                        "advanced": {
+                            "irreduciblePolynomialBinary": null,
+                            "n": null,
+                            "polynomialsBinary": [
+                            ]
+                        }
                     },
                     result: null,
                     isValid: false

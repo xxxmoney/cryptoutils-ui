@@ -2,6 +2,7 @@
     <Loading v-model:active="isLoading"
                 :can-cancel="false"
                 :is-full-page="true"/>
+    <Toast position="top-right" />
 
     <header class="p-6">
         <ul class="flex flex-row items-center gap-4 m-auto max-w-6xl">
@@ -28,10 +29,12 @@
     import { useMainStore } from '../store/mainStore';
     import { computed } from 'vue';
     import Loading from 'vue-loading-overlay';
+    import Toast from 'primevue/toast';
 
     export default {
         components: {
-            Loading
+            Loading,
+            Toast
         },
         setup () {
             const mainStore = useMainStore();

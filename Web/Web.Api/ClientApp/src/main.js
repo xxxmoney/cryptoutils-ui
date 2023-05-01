@@ -6,6 +6,9 @@ import pinia from './store';
 import ErrorMessages from './components/ErrorMessages.vue';
 import Point from './components/Point.vue';
 import CustomPoint from './components/CustomPoint.vue';
+import ToastService from 'primevue/toastservice';
+import ValidationChips from './components/ValidationChips.vue';
+import Tooltip from 'primevue/tooltip';
 
 // Styles import.
 import 'vue-loading-overlay/dist/css/index.css';
@@ -33,5 +36,14 @@ app.component('Point', Point);
 
 // Custom point.
 app.component('CustomPoint', CustomPoint);
+
+// Toast service.
+app.use(ToastService);
+
+// validation chips.
+app.component('ValidationChips', ValidationChips);
+
+// Tooltip.
+app.directive('tooltip', Tooltip);
 
 app.mount('#app');
